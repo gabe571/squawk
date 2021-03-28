@@ -1,4 +1,4 @@
-const SecondaryUserMessage = (lastMessage, message) => {
+const SecondaryUserMessage = ({lastMessage, message}) => {
     //check if first message by user
     const isFirstMessageByUser = !lastMessage || lastMessage.sender.username !== message.sender.username
 
