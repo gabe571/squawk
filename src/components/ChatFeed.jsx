@@ -8,6 +8,18 @@ const chat = chats && chats[activeChat];
 
 console.log(chat, userName, messages)
 
+const renderReadReceipts = (message, isUserMessage) => {
+    chat.people.map((person, index) => person.last_read === message.id &&(
+        <div 
+        key={`read_${index}`}
+        className='read-receipt'
+        style={{
+            float: isUserMessage ? 'right' : 'left',
+            backgroundImage: `url(${person?.person?.avatar})`
+        }}
+        />
+    ))
+}
 //to get id's of specific messages
 const renderMessages = () => {
     const keys = Object.keys(messages)
@@ -27,7 +39,7 @@ const renderMessages = () => {
                     }
                 </div>
                 <div className='read-receipts' style={{ marginRight: isUserMessage ? '18px' : '0px', marginLeft: isUserMessage ? '0px' : '68px'}}> </div>
-                read-receipts
+                {renderReadReceipts(message, isUserMessage)}
             </div>
         )
     })
